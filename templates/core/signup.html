@@ -1,0 +1,123 @@
+{% extends 'base_for_auth.html' %}
+{% load static %}
+{% block title %}Shop | SignUp{% endblock %}
+
+{% block content %}
+<style>
+       /* Общий фон страницы */
+       body {
+         background: linear-gradient(135deg, #6a11cb, #2575fc);
+         font-family: 'Arial', sans-serif;
+       }
+   
+       /* Стиль для формы */
+       .form-container {
+         background-color: #ffffff;
+         border-radius: 20px;
+         padding: 40px;
+         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+         width: 100%;
+         max-width: 420px;
+         animation: fadeIn 1s ease-in-out;
+       }
+   
+       /* Анимация для появления формы */
+       @keyframes fadeIn {
+         from {
+           opacity: 0;
+           transform: translateY(50px);
+         }
+         to {
+           opacity: 1;
+           transform: translateY(0);
+         }
+       }
+   
+       /* Стиль заголовка */
+       h1 {
+         font-size: 36px;
+         margin-bottom: 30px;
+         color: #343a40;
+         text-align: center;
+         font-weight: 600;
+       }
+   
+       /* Стили для полей ввода */
+       .form-control {
+         background-color: #f1f3f5;
+         border-radius: 10px;
+         border: 1px solid #ced4da;
+         padding: 12px;
+         font-size: 16px;
+         transition: all 0.3s ease;
+       }
+   
+       /* Эффект при фокусе на поле ввода */
+       .form-control:focus {
+         background-color: #ffffff;
+         border-color: #6a11cb;
+         box-shadow: 0 0 10px rgba(106, 17, 203, 0.4);
+         transform: scale(1.05);
+       }
+   
+       /* Стили для кнопки */
+       .btn-primary {
+         background-color: #6a11cb;
+         border-color: #6a11cb;
+         font-weight: bold;
+         text-transform: uppercase;
+         padding: 12px 20px;
+         font-size: 16px;
+         border-radius: 10px;
+         width: 100%;
+         transition: all 0.3s ease;
+       }
+   
+       /* Эффект при наведении на кнопку */
+       .btn-primary:hover {
+         background-color: #2575fc;
+         border-color: #2575fc;
+         transform: translateY(-5px);
+         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+       }
+   
+       /* Адаптивность */
+       @media (max-width: 768px) {
+         .form-container {
+           padding: 20px;
+         }
+   
+         h1 {
+           font-size: 28px;
+         }
+       }
+     </style>
+   </head>
+   <body>
+   
+     <div class="container d-flex justify-content-center align-items-center min-vh-100">
+       <div class="form-container">
+         <h1>Sign Up</h1>
+         <form method="post">
+           {% csrf_token %}
+           <div class="mb-3">
+             <input type="text" name="username" class="form-control" placeholder="Username" minlength="1" maxlength="50" required>
+           </div>
+           <div class="mb-3">
+             <input type="email" name="email" class="form-control" placeholder="Email" minlength="1" maxlength="100" required>
+           </div>
+           <div class="mb-3">
+             <input type="password" name="password" class="form-control" placeholder="Password" minlength="1" maxlength="100" required>
+           </div>
+           <div class="mb-3">
+             <input type="password" name="repeat_password" class="form-control" placeholder="Repeat Password" minlength="1" maxlength="100" required>
+           </div>
+           <button type="submit" class="btn btn-primary">Confirm</button>
+         </form>
+       </div>
+     </div>
+   
+     <!-- Подключение Bootstrap и JS -->
+     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+{% endblock %}

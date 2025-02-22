@@ -1,0 +1,261 @@
+{% extends "base_for_index.html" %}
+
+{% load static %}
+
+{% block title %}Главная страница{% endblock title %}
+
+{% block content %}
+    
+<style>
+    /* Общий стиль страницы */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #2f2f2f;
+        color: #fff;
+        margin: 0;
+        padding: 0;
+        transition: background-color 0.3s ease;
+    }
+
+    /* Hero секция без фона */
+    .hero-section {
+        padding: 120px 0;
+        text-align: center;
+        border-bottom: 2px solid #444;
+        background-color: #222;
+    }
+
+    .hero-section h1 {
+        font-size: 3rem;
+        text-transform: uppercase;
+        font-weight: bold;
+        color: #f4f4f4;
+        animation: fadeInUp 1.2s ease-in-out;
+    }
+
+    .hero-section p {
+        font-size: 1.25rem;
+        color: #aaa;
+        animation: fadeInUp 1.5s ease-in-out;
+    }
+
+    /* Анимация для плавного появления */
+    @keyframes fadeInUp {
+        0% {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* О компании */
+    .container {
+        padding: 40px 0;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .container h2 {
+        font-size: 2rem;
+        color: #e0e0e0;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .container p {
+        font-size: 1rem;
+        color: #ccc;
+        line-height: 1.6;
+    }
+
+    /* Стили для слайдера */
+    .carousel-inner img {
+        width: 1000px;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+        transition: transform 0.5s ease;
+    }
+
+    .carousel-inner {
+        width: 1000px;
+        margin: 0 auto;
+        margin-bottom: 50px;
+    }
+
+    .carousel-item {
+        transition: transform 1s ease;
+    }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        background-color: #fff;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        z-index: 10;
+    }
+
+    /* Стили для комментариев */
+    .comment-section {
+        background-color: #333;
+        padding: 50px 0;
+        text-align: center;
+        animation: fadeInUp 1s ease-in-out;
+    }
+
+    .comment {
+        background-color: #444;
+        padding: 25px;
+        margin-bottom: 30px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .comment:hover {
+        transform: scale(1.05);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .comment .name {
+        font-weight: bold;
+        color: #f4f4f4;
+        font-size: 1.25rem;
+        animation: slideIn 0.8s ease-in-out;
+    }
+
+    .comment p {
+        font-size: 1rem;
+        color: #ccc;
+        line-height: 1.6;
+        animation: fadeInText 1s ease-in-out;
+    }
+
+    @keyframes slideIn {
+        0% {
+            transform: translateX(-100%);
+        }
+        100% {
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes fadeInText {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+
+    /* Анимация слайдера */
+    .carousel-item-next, .carousel-item-prev, .carousel-item.active {
+        transition: transform 1.5s ease;
+    }
+
+    /* Адаптивность слайдера */
+    @media (max-width: 1200px) {
+        .carousel-inner img {
+            height: 70vh; /* 70% высоты окна для экранов среднего размера */
+        }
+    }
+
+    @media (max-width: 768px) {
+        .carousel-inner img {
+            height: 60vh; /* 60% высоты окна для мобильных устройств */
+        }
+        .carousel-inner {
+            width: 100%;
+        }
+    }
+
+    /* Стиль для блока комментариев на маленьких экранах */
+    @media (max-width: 768px) {
+        .container {
+            padding: 20px;
+        }
+
+        .comment {
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .hero-section h1 {
+            font-size: 2.5rem; /* Меньший шрифт для заголовка */
+        }
+
+        .hero-section p {
+            font-size: 1.1rem;
+        }
+    }
+</style>
+</head>
+<body>
+
+<!-- Hero Section -->
+<section class="hero-section">
+<h1>Добро пожаловать в GameSphere!</h1>
+<p>Лучший магазин видеоигр для всех платформ</p>
+</section>
+
+<!-- О компании -->
+<div class="container text-center">
+<h2>О компании</h2>
+<p>GameSphere — это ваш надежный источник для покупки видеоигр всех жанров и платформ. Мы предлагаем широкий выбор игр для PC, PlayStation, Xbox, а также для мобильных устройств. В нашем магазине вы найдете как новинки, так и классические хиты. Мы стремимся предложить нашим клиентам лучшие цены, быструю доставку и отличный сервис. Добро пожаловать в мир игр, где каждый найдет что-то для себя!</p>
+</div>
+
+<!-- Слайдер с изображениями -->
+<div id="gameCarousel" class="carousel slide slider" data-bs-ride="carousel">
+<div class="carousel-inner">
+    <div class="carousel-item active">
+        <img class="d-block w-100" src="https://cdn2.unrealengine.com/Diesel%2Fblog%2Fsnowrunner-pre-purchase%2FEGS_Social_Snow_Runner_News_1920x1080-1920x1080-d25c1569d311fc34b4b9e12e98eef7ef1810c134.jpg" alt="Game 1">
+    </div>
+    <div class="carousel-item">
+        <img class="d-block w-100" src="https://news.xbox.com/en-us/wp-content/uploads/sites/2/2022/02/AtomicHeartYT_Thumbnail.jpg" alt="Game 2">
+    </div>
+    <div class="carousel-item">
+        <img class="d-block w-100" src="https://avatars.mds.yandex.net/i?id=1d226e9e376546a44a8008c5107fe342_l-5334917-images-thumbs&n=13" alt="Game 3">
+    </div>
+</div>
+<!-- Стрелочки внутри слайдера -->
+<a class="carousel-control-prev" href="#gameCarousel" role="button" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Предыдущий</span>
+</a>
+<a class="carousel-control-next" href="#gameCarousel" role="button" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Следующий</span>
+</a>
+</div>
+
+<!-- Комментарии -->
+<div class="comment-section">
+<div class="container">
+    <h2>Отзывы о нашем магазине</h2>
+    <div class="comment">
+        <p class="name">Иван, 28 лет</p>
+        <p>Отличный магазин! Огромный выбор игр по хорошим ценам, доставка быстрая, а интерфейс сайта удобный. Рекомендую всем!</p>
+    </div>
+    <div class="comment">
+        <p class="name">Мария, 35 лет</p>
+        <p>Очень довольна покупкой. Заказывала несколько игр для PS5 — все пришло быстро и в идеальном состоянии. Обязательно вернусь за новыми играми!</p>
+    </div>
+    <div class="comment">
+        <p class="name">Дмитрий, 22 года</p>
+        <p>Идеальное место для покупки видеоигр! Легко найти, что нужно, и всегда есть скидки на новинки. 5 звёзд!</p>
+    </div>
+</div>
+</div>
+
+<!-- Подключаем Bootstrap JS и jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+{% endblock content %}

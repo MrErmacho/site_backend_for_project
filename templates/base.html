@@ -1,0 +1,214 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body>
+    <style>
+        /* Стили для навигации */
+        nav {
+            background-color: #f1f1f1; /* Светло-серый фон */
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link {
+            color: #333; /* Темно-серый цвет для текста */
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #3498db; /* Синий цвет при наведении */
+            transform: translateY(-3px); /* Эффект приподнимания */
+        }
+
+        /* Анимация для появления футера */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Адаптивность для мобильных устройств */
+        @media (max-width: 768px) {
+            .social-icons a {
+                font-size: 20px;
+                margin-right: 15px;
+            }
+
+            .footer-links a {
+                font-size: 14px;
+            }
+
+            footer {
+                padding: 30px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Навигационная панель -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">GameStore</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Главная</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'shop:catalog' %}">Каталог</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'shop:orders' %}">Ваши заказы</a></li>
+            </ul>
+            <ul class="navbar-nav ms-auto">
+                {% if user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'auth:profile' %}">Профиль</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'auth:signout' %}">Выход</a></li>
+                {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'auth:signup' %}">Регистрация</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'auth:signin' %}">Вход</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Подключение Bootstrap и иконок (если используете иконки Bootstrap) -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>
+    
+ 
+    {% block content %}
+    {% endblock content %}
+
+    <style>
+        /* Специальные стили для футера */
+        footer {
+            background-color: #121212; /* Темно-серый, почти черный */
+            color: white;
+            padding: 40px 0;
+            animation: fadeInUp 1s ease-out; /* Анимация появления */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Легкая тень для эффекта глубины */
+        }
+
+        /* Анимация для появления футера */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .social-icons a {
+            font-size: 24px;
+            color: white;
+            margin-right: 20px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #3498db; /* Синий при наведении */
+            transform: translateY(-5px);
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s ease, text-decoration 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+            color: #3498db; /* Синий цвет при наведении */
+        }
+
+        .footer-logo img {
+            max-width: 150px;
+        }
+
+        /* Стили для маленьких экранов */
+        @media (max-width: 768px) {
+            .social-icons a {
+                font-size: 20px;
+                margin-right: 15px;
+            }
+
+            .footer-links a {
+                font-size: 14px;
+            }
+
+            footer {
+                padding: 30px 0;
+            }
+        }
+    </style>
+
+
+<!-- Футер -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <!-- Логотип и описание -->
+            <div class="col-md-4 footer-logo text-center text-md-start mb-4">
+                <ul class="list-unstyled d-felx">
+                    <li class="mb-3"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAADGklEQVR4nO2ZW4hMYRzAv12XFXbEYslsqxCeKDwQL7zsepByKaU8bObBg1pL4sEtCcW7eORl4212JLnfctlssW6RWHJpQ2G0LD/985+cjj1zzpk5M3O+8qt5mM45/+//m/lu5/8Z85/yA1wCbhubAUbzh15jM0Czilw1tgIMB+6oSMrYCJAErqhEF1BjbAIYB+wHPqvEM6DB2AIwFTgMfOEv7TLYTdwBBgHLgTPAL4fAWWCRiTvAMGCjdpsc0pWOALOMDQDrgJcOgUfABiBhbACYAJx2CHQDa4BqYwvAdOB5boUG1lol4FgP3qjEDflnjG0Ag4GbKnFeVmpjI0CLSki3qjM2AlQDL1RktbEVYKFKPAWqTIy20hngA5AFeoAOoM1r8AIHVOSgx1TcpjElVlZjS8ymUggkgFPkpw84Knsl17Npvb7CtZ+Se7/7xGwHaqOSmAjcJzg/gZOSODBZV2xhmYwR/UHknqDcA+qLlagDHlJ5uoExhUoMAS4QH85JToWI7CZ+7AgrMTvAQKwEP4A5YbpUJ/GlCxgaRETm9bjT6icxAnhXwQTTwCTdKcsi6cXbvBtPYKtfS677oybpiN3gc+8WL4lafdmxReQ9MHIgkVSQlkosktFu1eB6HfaiZSCRa153e4+qoqX8xkTa5/pldxLTXPWkcon4daWkz3XJeYozib35WouxiLDHmcRdAhJB8mHGRCbAmOnMJTMK6K+QSKHriBPJPSHJLCUEMZp+nTQZLd3HhWSBIvtMwPm6XGRCriM5OkTkMfbzQEQ+Yj+9RqsfpXgBOg4sBsbqZwlwQq9FTZ+IfIs46HVgRp6Fc6YWsaMkK4FfRxRMSjw75Rgt4FHbrpBloXz0RDVryfa/2U/Ao3Lp++oQdNbaTHHIcUFjWAmHTCNwq8gcNkmgeq25hkW2BocCFQL8ZWr0SLq/gDy+AuNzgbaHfFg2mXOLFRhAaF6YDayyzRmgCjgW4KEnwHo5gYpawnW6ldK2/JBC+L9HFcAq4CLwSbvbKz0qk/3Y/HKeb+iPu0DbltKtzK6Skyzg8n2l84Hfj2MbnlfS64EAAAAASUVORK5CYII=" alt="controller"></li>
+                    <li><p>GameStore</p></li>
+                </ul>
+                <p class="mt-3">Все ваши любимые игры в одном месте!</p>
+            </div>
+
+            <!-- Социальные сети -->
+            <div class="col-md-4 mb-4">
+                <h5 class="text-white text-center text-md-start">Мы в социальных сетях</h5>
+                <ul class="social-icons text-center text-md-start list-unstyled">
+                    <li><a href="https://VK.com" target="_blank">VK</a></li>
+                    <li><a href="https://Telegram.com" target="_blank">Telegram</a></li>
+                    <li><a href="https://VK_Messenger.com" target="_blank">VK Messenger</a></li>
+                    <li><a href="https://TikTok.com" target="_blank">TikTok</a></li>
+                </ul>
+            </div>
+
+            <!-- Ссылки на страницы -->
+            <div class="col-md-4 mb-4">
+                <h5 class="text-white text-center text-md-start">Полезные ссылки</h5>
+                <ul class="footer-links text-center text-md-start list-unstyled">
+                    <li><a href="/privacy-policy">Политика конфиденциальности</a></li>
+                    <li><a href="/terms">Условия использования</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Нижняя часть футера -->
+        <div class="row text-center">
+            <div class="col-12">
+                <p>&copy; 2025 GameStore. Все права защищены.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Подключение Bootstrap и иконок (если используете иконки Bootstrap) -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

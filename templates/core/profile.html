@@ -1,0 +1,136 @@
+{% extends 'base_for_auth.html' %}
+{% load static %}
+{% block title %}Shop | Profile{% endblock %}
+
+{% block content %}
+<style>
+    /* Общий стиль страницы */
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #e6f2ff;
+        margin: 0;
+        padding: 0;
+        transition: background-color 0.3s ease;
+    }
+
+    /* Стиль для контейнера с профилем */
+    .container {
+        max-width: 700px;
+        margin: 50px auto;
+        padding: 30px;
+        background-color: #ffffff;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        animation: fadeIn 1s ease-out;
+    }
+
+    /* Анимация для контейнера */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Стиль для заголовка профиля */
+    .profile-header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .profile-header h2 {
+        font-size: 2rem;
+        color: #5c6bc0;
+        font-weight: bold;
+    }
+
+    .profile-header p {
+        font-size: 1.1rem;
+        color: #757575;
+    }
+
+    /* Стиль для информации профиля */
+    .profile-info {
+        margin-top: 30px;
+    }
+
+    .profile-info p {
+        font-size: 18px;
+        color: #333;
+        margin: 15px 0;
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .profile-info p:hover {
+        color: #5c6bc0;
+        transform: scale(1.05);
+    }
+
+    /* Стиль для меток */
+    .profile-info label {
+        font-weight: bold;
+        color: #5c6bc0;
+    }
+
+    /* Стиль для полей с данными */
+    .password-field, .email-field {
+        color: #4caf50;
+        font-weight: bold;
+    }
+
+    /* Стиль для кнопки */
+    .btn-outline-info {
+        border-radius: 30px;
+        padding: 10px 20px;
+        text-transform: uppercase;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+
+    .btn-outline-info:hover {
+        background-color: #5c6bc0;
+        color: white;
+    }
+
+    /* Адаптивность */
+    @media (max-width: 768px) {
+        .container {
+            padding: 20px;
+            margin: 20px auto;
+        }
+
+        .profile-header h2 {
+            font-size: 1.8rem;
+        }
+
+        .profile-info p {
+            font-size: 16px;
+        }
+    }
+</style>
+
+
+<div class="container">
+<div class="profile-header">
+    <h2>Профиль пользователя</h2>
+    <p>Добро пожаловать, <strong>{{ user.username }}</strong>!</p>
+</div>
+
+<div class="profile-info">
+    <p><label for="username">Имя пользователя:</label> {{ user.username }}</p>
+    <p><label for="password">Пароль:</label> <span class="password-field">******</span></p>
+    <p><label for="email">Почта:</label> <span class="email-field">******@*****.com</span></p>
+</div>
+
+
+</div>
+
+<!-- Подключение Bootstrap и JS -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    
+{% endblock %}
