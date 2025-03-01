@@ -1,0 +1,1 @@
+web: daphne config.configs.asgi:application

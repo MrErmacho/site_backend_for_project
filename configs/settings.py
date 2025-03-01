@@ -1,16 +1,45 @@
 from pathlib import Path
 
+import environ
+import os
+
+
+import os
+import environ
+
+# Базовая директория проекта
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Инициализация django-environ
+env = environ.Env()
+environ.Env.read_env(os.path.join(BASE_DIR, ".env"))
+
+
+# Настройки
+DEBUG = env.bool("DEBUG", default=False)
+SECRET_KEY = env("SECRET_KEY", default="your_default_secret")
+ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=[])
+DATABASES = {
+    "default": env.db("DATABASE_URL", default="sqlite:///db.sqlite3")
+}
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),  # Путь к базе данных
+    }
+}
+
 
 SECRET_KEY = 'django-insecure-)^8k7$^0mqgjtie)e_8qe+y!zco!g+*f=d@53or^v0h96xn%p#'
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['*']
 
 
 INSTALLED_APPS = [
@@ -58,12 +87,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+
 
 
 AUTH_USER_MODEL = 'core.User'
