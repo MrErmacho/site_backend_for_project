@@ -24,6 +24,10 @@ DATABASES = {
 }
 
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://sitebackendforproject-production.up.railway.app',
+]
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -39,7 +43,7 @@ SECRET_KEY = 'django-insecure-)^8k7$^0mqgjtie)e_8qe+y!zco!g+*f=d@53or^v0h96xn%p#
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['sitebackendforproject-production.up.railway.app']
 
 
 INSTALLED_APPS = [
