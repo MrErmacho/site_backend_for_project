@@ -28,6 +28,8 @@ def product_detail(request, product_id):
     return render(request, 'shop/product_detail.html', {'product': product})
 
 def orders_create(request, product_id):
+    if not request.user.is_authenticated:
+        return redirect('auth:signin')
     product = Product.objects.get(id=product_id)
     if request.method == "POST":
         Order.objects.create(

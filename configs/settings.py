@@ -43,7 +43,7 @@ SECRET_KEY = 'django-insecure-)^8k7$^0mqgjtie)e_8qe+y!zco!g+*f=d@53or^v0h96xn%p#
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['sitebackendforproject-production.up.railway.app']
+ALLOWED_HOSTS = ['*']
 
 
 INSTALLED_APPS = [
